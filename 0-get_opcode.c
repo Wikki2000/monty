@@ -9,10 +9,10 @@
  */
 void (*get_opcode(char *s))(stack_t **, unsigned int)
 {
-	int i;
+	int i, line_number = 1;
 	instruction_t ops[] = {
-		{"push", op_push},
 		{"pall", op_pall},
+		{"push", op_push},
 		{NULL, NULL}
 	};
 
@@ -20,8 +20,9 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 	{
 		if (strcmp(ops[i].opcode, s) == 0)
 			return ops[i].f;
+		line_number++;
 	}
 
-	fprintf(stderr, "Unknown instruction %s\n", s);
+	fprintf(stderr, "L%d: usage: push integer", line_number);
 	exit(EXIT_FAILURE);
 }
