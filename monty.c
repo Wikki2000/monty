@@ -10,7 +10,7 @@
 int main(int ac, char *av[])
 {
 	FILE *file;
-	unsigned int line_number = 0;
+	unsigned int line_number = 1;
 	char buffer[MAX_SIZE];
 	stack_t *my_stack = NULL;
 	char *token[3];
@@ -31,18 +31,19 @@ int main(int ac, char *av[])
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
 		token[0] = strtok(buffer, " \n");
-		if (token[0] == NULL)
+		token[1] = strtok(NULL, " \n");
+
+		/* Check if the 2nd arg for push opcode is an int */
+		if (!is_digit(token[1]) && token[1] != NULL)
 		{
-			fprintf(stderr, "Error: Missing opcode on line %u\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
-		token[0][strcspn(token[0], "\n")] = '\0';
-		token[1] = strtok(NULL, " \n");
-	/*	if (!isdigit(token[1]) && token[1] == NULL)
-		{
-			fprintf(stderr, "L%d: usage: push integer", line_number);
-			exit(EXIT_FAILURE);
-		}*/
+
+		/* 
+		 * This condition is as in the case of pall
+		 * whereit has no 2nd arg
+		 */
 		if (token[1] == NULL)
 			token[1] = "0";
 		get_opcode(token[0])(&my_stack, atoi(token[1]));
@@ -52,4 +53,3 @@ int main(int ac, char *av[])
 	fclose(file);
 	return (0);
 }
-
