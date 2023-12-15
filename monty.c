@@ -38,11 +38,11 @@ int main(int ac, char *av[])
 		}
 		token[0][strcspn(token[0], "\n")] = '\0';
 		token[1] = strtok(NULL, " \n");
-		if (!isdigit(token[1]) && token[1] == NULL)
+	/*	if (!isdigit(token[1]) && token[1] == NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer", line_number);
 			exit(EXIT_FAILURE);
-		}
+		}*/
 		if (token[1] == NULL)
 			token[1] = "0";
 		get_opcode(token[0])(&my_stack, atoi(token[1]));
