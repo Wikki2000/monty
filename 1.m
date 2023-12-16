@@ -1,5 +1,7 @@
 push 1
-push 1024
-push -3
-push -0
+pint
+push 2
+pint
+push 3
+pint
 pall

@@ -44,7 +44,7 @@ int main(int ac, char *av[])
 			exit(EXIT_FAILURE);
 		}
 
-		/* 
+		/*
 		 * This condition is as in the case of pall
 		 * where it has no 2nd arg
 		 */
