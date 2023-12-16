@@ -9,7 +9,7 @@
  */
 void (*get_opcode(char *s))(stack_t **, unsigned int)
 {
-	int i, line_number = 1;
+	int i, line_number = 0;
 	instruction_t ops[] = {
 		{"pall", op_pall},
 		{"push", op_push},

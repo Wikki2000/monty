@@ -1,5 +1,2 @@
 push 1
-push     2
-
-push 
-
+pushe 2
