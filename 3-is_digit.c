@@ -15,6 +15,8 @@ int is_digit(char *s)
 
 	for (i = 0; s[i]; i++)
 	{
+		if (s[i] == '-' || s[i] == '+')
+			continue;
 		if (!isdigit(s[i]))
 			return (0);
 	}
