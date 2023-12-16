@@ -21,6 +21,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void free_stack(stack_t *stack);
 int is_digit(char *s);
 void (*get_opcode(char *s))(stack_t **, unsigned int);
 void op_push(stack_t **stack, unsigned int line_number);
