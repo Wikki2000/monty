@@ -30,13 +30,17 @@ int main(int ac, char *av[])
 
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
-		token[0] = strtok(buffer, " \n");
-		token[1] = strtok(NULL, " \n");
+		buffer[strcspn(buffer, "\n")] = '\0';
+		if (is_empty_line(buffer))
+			continue;
+		token[0] = strtok(buffer, " \n\t");
+		token[1] = strtok(NULL, " \n\t");
 
 		/* Check if the 2nd arg for push opcode is an int */
 		if (!is_digit(token[1]) && token[1] != NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			free_stack(my_stack);
 			exit(EXIT_FAILURE);
 		}
 

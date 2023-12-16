@@ -23,6 +23,7 @@ typedef struct instruction_s
 
 void free_stack(stack_t *stack);
 int is_digit(char *s);
+int is_empty_line(char *s);
 void (*get_opcode(char *s))(stack_t **, unsigned int);
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);

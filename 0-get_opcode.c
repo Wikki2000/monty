@@ -23,6 +23,6 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 		line_number++;
 	}
 
-	fprintf(stderr, "L%d: usage: push integer %s\n", line_number, s);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, s);
 	exit(EXIT_FAILURE);
 }
