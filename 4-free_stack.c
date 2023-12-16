@@ -2,7 +2,7 @@
 
 /**
  * free_stack - Frees a stack of type stack_t.
- * @head: A pointer to the head of the list.
+ * @stack: The stack data structure.
  *
  * Description: This function recursively frees stack and the memory it
  * occupies, starting from the last (tail) node to the first (head) node.

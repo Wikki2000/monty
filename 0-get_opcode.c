@@ -19,7 +19,7 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 	for (i = 0; ops[i].opcode; i++)
 	{
 		if (strcmp(ops[i].opcode, s) == 0)
-			return ops[i].f;
+			return (ops[i].f);
 		line_number++;
 	}
 
