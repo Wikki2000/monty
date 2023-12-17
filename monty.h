@@ -21,6 +21,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+struct store_line_number
+{
+	unsigned int value;
+} line;
+
 void free_stack(stack_t *stack);
 int is_digit(char *s);
 int is_empty_line(char *s);

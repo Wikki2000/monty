@@ -31,18 +31,12 @@ int main(int ac, char *av[])
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
 		line_number++;
+		line.value = line_number;
 		buffer[strcspn(buffer, "\n")] = '\0';
 		if (is_empty_line(buffer))
 			continue;
 		token[0] = strtok(buffer, " \n");
 		token[1] = strtok(NULL, " \n");
-
-		/* Check if the 2nd arg for push opcode is an int */
-		if (!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
 
 		/*
 		 * This condition is as in the case of pall
@@ -50,6 +44,13 @@ int main(int ac, char *av[])
 		 */
 		if (token[1] == NULL && (!strncmp(buffer, "pall", 4) || !strncmp(buffer, "pint", 4)))
 			token[1] = "0";
+
+                /* Check if the 2nd arg for push opcode is an int */
+                if (!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
+                {
+                        fprintf(stderr, "L%d: usage: push integer\n", line_number);
+                        exit(EXIT_FAILURE);
+                }
 		if (get_opcode(buffer) == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, buffer);
