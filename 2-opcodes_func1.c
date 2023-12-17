@@ -51,11 +51,11 @@ void op_pall(stack_t **stack, unsigned int line_number)
  */
 void op_pint(stack_t **stack, unsigned int line_number)
 {
-        (void) line_number;
+        line_number = line_value;
 
         if (*stack == NULL)
         {
-                fprintf(stderr, "L%d: can't pint, stack empty\n", line.value);
+                fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
                 exit(EXIT_FAILURE);
         }
 

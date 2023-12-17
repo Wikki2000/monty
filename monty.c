@@ -10,11 +10,11 @@
 int main(int ac, char *av[])
 {
 	FILE *file;
-	unsigned int line_number = 0;
 	char buffer[MAX_SIZE];       
 	stack_t *my_stack = NULL;
 	char *token[3];
 
+	line_value = 0; /* Assigning global var for tracking line_number */
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -30,8 +30,7 @@ int main(int ac, char *av[])
 
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
-		line_number++;
-		line.value = line_number; /* store line_number in struct, so as to be accessed by all files */
+		line_value++;
 		buffer[strcspn(buffer, "\n")] = '\0'; /* rem '\n' from a files as a result of enter key press */
 		if (is_empty_line(buffer))
 			continue;
@@ -46,12 +45,12 @@ int main(int ac, char *av[])
                 if ((!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
 				|| (token[1] == NULL && strncmp(buffer, "push", 4) == 0))
                 {
-                        fprintf(stderr, "L%d: usage: push integer\n", line_number);
+                        fprintf(stderr, "L%d: usage: push integer\n", line_value);
                         exit(EXIT_FAILURE);
                 }
 		if (get_opcode(buffer) == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, buffer);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_value, buffer);
 			exit(EXIT_FAILURE);
 		}
 		get_opcode(token[0])(&my_stack, atoi(token[1]));

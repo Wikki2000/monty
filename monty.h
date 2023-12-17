@@ -8,6 +8,8 @@
 #include <string.h>
 #include <ctype.h>
 
+unsigned int line_value;
+
 typedef struct stack_s
 {
 	int n;
@@ -20,11 +22,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-struct store_line_number
-{
-	unsigned int value;
-} line;
 
 void free_stack(stack_t *stack);
 int is_digit(char *s);
