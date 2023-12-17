@@ -38,7 +38,7 @@ int main(int ac, char *av[])
 		token[1] = strtok(NULL, " \n");
 
 		/* Check if the 2nd arg for push opcode is an int */
-		if ((!is_digit(token[1]) && token[1] != NULL) || (strcmp(token[0], "push") == 0 && token[1] == NULL))
+		if (!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
@@ -48,11 +48,15 @@ int main(int ac, char *av[])
 		 * This condition is as in the case of pall
 		 * where it has no 2nd arg
 		 */
-		if (token[1] == NULL)
+		if (token[1] == NULL && (!strncmp(buffer, "pall", 4) || !strncmp(buffer, "pint", 4)))
 			token[1] = "0";
+		if (get_opcode(buffer) == NULL)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, buffer);
+			exit(EXIT_FAILURE);
+		}
 		get_opcode(token[0])(&my_stack, atoi(token[1]));
 	}
-
 	fclose(file);
 	free_stack(my_stack);
 	return (0);

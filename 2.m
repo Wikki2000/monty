@@ -1,2 +1,4 @@
 push 98
-pint Holberton
+push 22
+push 4
+pall  dfg

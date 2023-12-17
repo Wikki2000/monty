@@ -9,7 +9,7 @@
  */
 void (*get_opcode(char *s))(stack_t **, unsigned int)
 {
-	int i, line_number = 0;
+	int i, line_number = -1;
 	instruction_t ops[] = {
 		{"pall", op_pall},
 		{"push", op_push},
@@ -23,7 +23,5 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 			return (ops[i].f);
 		line_number++;
 	}
-
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, s);
-	exit(EXIT_FAILURE);
+	return (NULL);
 }
