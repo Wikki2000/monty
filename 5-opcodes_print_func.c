@@ -23,3 +23,26 @@ void op_pchar(stack_t **stack, unsigned int line_number)
 
 	printf("%c\n", (*stack)->n);
 }
+
+/**
+ * pstr - Prints each character of the stack, followed by a new line.
+ * @stack: A pointer to the top of the stack.
+ * @line_number: The current line number in the Monty bytecode file.
+ */
+void op_pstr(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+
+	if (*stack == NULL)
+	{
+		printf("\n");
+		return;
+	}
+	if ((*stack)->n < 0 || (*stack)->n > 127)
+		return;
+	while (*stack != NULL)
+	{
+		printf("%c\n", (*stack)->n);
+		*stack = (*stack)->next;
+	}
+}
