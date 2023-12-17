@@ -42,7 +42,7 @@ int main(int ac, char *av[])
 		 * This condition is as in the case of pall
 		 * where it has no 2nd arg
 		 */
-		if (token[1] == NULL && (!strncmp(buffer, "pall", 4) || !strncmp(buffer, "pint", 4)))
+		if (token[1] == NULL)
 			token[1] = "0";
 
                 /* Check if the 2nd arg for push opcode is an int */
