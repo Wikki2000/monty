@@ -15,6 +15,8 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 		{"pint", op_pint}, {"pop", op_pop},
 		{"swap", op_swap}, {"add", op_add},
 		{"sub", op_sub}, {"div", op_div},
+		{"mod", op_mod}, {"mul", op_mul},
+		{"pchar", op_pchar},
 		{"nop", op_nop}, {NULL, NULL}
 	};
 
