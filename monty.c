@@ -31,17 +31,14 @@ int main(int ac, char *av[])
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
 		line_number++;
-		line.value = line_number;
-		buffer[strcspn(buffer, "\n")] = '\0';
+		line.value = line_number; /* store line_number in struct, so as to be accessed by all files */
+		buffer[strcspn(buffer, "\n")] = '\0'; /* rem '\n' from a files as a result of enter key press */
 		if (is_empty_line(buffer))
 			continue;
 		token[0] = strtok(buffer, " \n");
 		token[1] = strtok(NULL, " \n");
 
-		/*
-		 * This condition is as in the case of pall
-		 * where it has no 2nd arg
-		 */
+		/* This condition check if command does not need 2nd arg */
 		if (token[1] == NULL)
 			token[1] = "0";
 
