@@ -46,7 +46,8 @@ int main(int ac, char *av[])
 			token[1] = "0";
 
                 /* Check if the 2nd arg for push opcode is an int */
-                if (!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
+                if ((!is_digit(token[1]) && token[1] != NULL && strncmp(buffer, "push", 4) == 0)
+				|| (token[1] == NULL && strncmp(buffer, "push", 4) == 0))
                 {
                         fprintf(stderr, "L%d: usage: push integer\n", line_number);
                         exit(EXIT_FAILURE);
