@@ -11,11 +11,11 @@ void (*get_opcode(char *s))(stack_t **, unsigned int)
 {
 	int i, line_number = -1;
 	instruction_t ops[] = {
-		{"pall", op_pall},
-		{"push", op_push},
-		{"pint", op_pint},
-		{"pop", op_pop},
-		{NULL, NULL}
+		{"pall", op_pall}, {"push", op_push},
+		{"pint", op_pint}, {"pop", op_pop},
+		{"swap", op_swap}, {"add", op_add},
+		{"sub", op_sub},
+		{"nop", op_nop}, {NULL, NULL}
 	};
 
 	for (i = 0; ops[i].opcode; i++)
