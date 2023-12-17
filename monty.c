@@ -32,7 +32,7 @@ int main(int ac, char *av[])
 	{
 		line_value++;
 		buffer[strcspn(buffer, "\n")] = '\0'; /* rem '\n' from a files as a result of enter key press */
-		if (is_empty_line(buffer) || buffer[0] == '#')
+		if (is_empty_line(buffer) || strchr(buffer, '#') != NULL)
 			continue;
 		token[0] = strtok(buffer, " \n");
 		token[1] = strtok(NULL, " \n");
